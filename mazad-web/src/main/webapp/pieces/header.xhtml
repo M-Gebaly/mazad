@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <div class="header-top">
+        <div class="container">
+            <div class="social">
+                <ul>
+                    <li><a href="#"><i class="facebok"> </i></a></li>
+                    <li><a href="#"><i class="twiter"> </i></a></li>
+                    <li><a href="#"><i class="inst"> </i></a></li>
+                    <li><a href="#"><i class="goog"> </i></a></li>
+                </ul>
+            </div>
+            <div class="header-left">
+
+                <div class="search-box">
+                    <div id="sb-search" class="sb-search">
+                        <form action="#" method="post">
+                            <input class="sb-search-input" placeholder="Enter your search term..." type="search"  id="search"/>
+                            <input class="sb-search-submit" type="submit" value=""/>
+                            <span class="sb-icon-search"> </span>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- search-scripts -->
+                <h:outputScript name="js/classie.js" />
+                <h:outputScript name="js/uisearch.js" />
+                <script>
+                    new UISearch(document.getElementById('sb-search'));
+                </script>
+                <!-- //search-scripts -->
+            </div>
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="head-top">
+            <div class="logo">
+                <h1><a href="index.xhtml">Mazad</a></h1>
+            </div>
+            <div class=" h_menu4">
+                <ul class="memenu skyblue">
+                    <h:form>
+                        <li><h:commandLink value = "Home" action = "index.xhtml" style="margin-right: 30px;" /></li>
+                        <li><h:commandLink value = "Register" action = "register.xhtml" style="margin-right: 30px;" /></li>
+                        <li><h:commandLink value = "Login" action = "login.xhtml" style="margin-right: 30px;" /></li>
+                    </h:form>
+                </ul> 
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</ui:composition>
+
+

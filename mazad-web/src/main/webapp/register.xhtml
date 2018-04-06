@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+          
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <!---->
+    <h:body>
+        <ui:composition template="templates/masterTemplate.xhtml">
+            <ui:define name="content">
+                <div class="grow">
+                    <div class="container">
+                        <h2>Register</h2>
+                    </div>
+                </div>
+                <!-- grow -->
+                <!--content-->
+                <div class=" container">
+                    <div class="account">
+                        <div class="account-pass">
+                            <div class="col-md-8 account-top">
+                                <h:form prependId="false">
+                                    <div class="col-md-6 register-top-grid register-bottom-grid">
+                                        <h3>Personal Information</h3>
+                                        <div>
+                                            <span>Full Name</span>
+                                            <h:inputText value="#{user.name}" required="true" id="fname"/>  
+                                            <h:message for="fname"/>
+                                        </div>
+                                        <div>
+                                            <span>Birth date</span>
+                                            <h:inputText value="#{user.birthDate}" required="true" id="bd">
+                                                <f:convertDateTime pattern="MM/YYYY"/>
+                                            </h:inputText>
+                                            <h:message for="bd"/>
+                                        </div>
+                                        <div>
+                                            <span>Email Address</span>
+                                            <h:inputText value="#{user.email}" required="true" id="email">
+                                                <f:validator validatorId="emailValidator"/>
+                                            </h:inputText> 
+                                            <h:message for="email"/>
+                                        </div>
+                                        <div>
+                                            <span>Password</span>
+                                            <h:inputSecret value="#{user.password}" required="true" id="password">
+                                                <f:validateLength minimum="8"/>
+                                            </h:inputSecret>
+                                            <h:message for="password"/>
+                                        </div>
+                                        <p>
+                                            <h:commandButton value="Register" style="margin-right: 15px;width: 100px;" action="#{user.register}"/>
+                                            <h:commandButton value="Cancel" style="margin-right: 15px;width: 90px;" action="index" immediate="true"/>
+                                        </p>
+                                    </div>
+                                </h:form>
+                            </div>
+                            <div class="col-md-4 left-account">
+                                <a href="single.xhtml">
+                                    <h:graphicImage class="img-responsive" name="images/s1.jpg" /></a>
+                                <div class="five">
+                                    <h2>25% </h2><span>discount</span>
+                                </div>
+                                <a href="register.xhtml" class="create">Create an account</a>
+                                <div class="clearfix"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

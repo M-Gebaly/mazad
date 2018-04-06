@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <!---->
+    <h:body>
+        <ui:composition template="templates/masterTemplate.xhtml">
+            <ui:define name="content">
+                <!-- grow -->
+                <div class="grow">
+                    <div class="container">
+                        <h2>Login</h2>
+                    </div>
+                </div>
+                <!-- grow -->
+                <!--content-->
+                <div class="container">
+                    <div class="account">
+                        <div class="account-pass">
+                            <div class="col-md-8 account-top">
+                                <h:form prependId="false">
+                                    <div class="col-md-6 register-top-grid">
+                                        <h3>Personal information</h3>
+                                        <div>
+                                            <span>Email</span>
+                                            <h:inputText styleClass="text-input" value="#{user.email}" id="email"/>
+                                        </div>
+                                        <div>
+                                            <h:message for="email" id="errorMsg"/>
+                                        </div>
+                                        <div>
+                                            <span>Password</span>
+                                            <h:inputSecret value="#{user.password}" id="password"/>
+                                        </div>
+                                        <p>
+                                            <h:commandButton value="Login" style="margin-right: 15px;width: 80px;" action="#{user.checkLogin}"/>
+                                            <h:commandButton value="Cancel" style="width: 100px;" action="index" immediate="true"/>
+                                        </p>
+                                    </div>
+                                </h:form>
+                            </div>
+                            <div class="col-md-4 left-account ">
+                                <a href="single.xhtml">
+                                    <h:graphicImage class="img-responsive" name="images/s1.jpg" /></a>
+                                <div class="five">
+                                    <h2>25% </h2><span>discount</span>
+                                </div>
+                                <a href="register.xhtml" class="create">Create an account</a>
+                                <div class="clearfix"> </div>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
