@@ -17,6 +17,7 @@ import javax.faces.validator.ValidatorException;
 /**
  *
  * @author shalaby
+ * 
  */
 @ManagedBean(name = "user")
 @SessionScoped
@@ -26,7 +27,7 @@ public class UserBean {
     private String email;
     private String name;
     private Date birthDate;
-    
+       
     private String locale = "ar";
 
     public UserBean() {
@@ -34,14 +35,6 @@ public class UserBean {
 
     public String checkLogin() {
         return null;
-//        String page;
-//        currentUser = new ServiceHandler().checkLogin(email, password);
-//        if (currentUser != null) {
-//            page = "index";
-//        } else {
-//            page = "login";
-//        }
-//        return page;
     }
 
     public String register() {
@@ -54,7 +47,7 @@ public class UserBean {
 
         String enteredEmail = (String) obj;
         if (!enteredEmail.matches(regexEmail)) {
-            //if user email does not match the regex
+            
             FacesMessage message = new FacesMessage("Validation error", "Invalid Format of Email");
             message.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(message);
