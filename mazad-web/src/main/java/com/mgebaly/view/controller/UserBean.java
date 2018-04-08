@@ -69,7 +69,28 @@ public class UserBean {
 			System.out.println("log in success");
 			return "index";
 		}
-
-
+	}
+	
+	public String addUser ()
+	{
+		try {
+			Users temp = new Users();
+			temp.setUserName(u.getUserName());
+			temp.setAuctionLimit(u.getAuctionLimit());
+			temp.setUserPassword(u.getUserPassword());
+			temp.setUserEmail(u.getUserEmail());
+			temp.setUserAddress(u.getUserPassword());
+			temp.setCreditCard(u.getCreditCard());
+			temp.setUserRole(u.getUserRole());
+			fl.create(temp);
+	        System.out.println("added"); 
+	        System.out.println(temp);
+	        return "index";
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("error in adding");
+			return "register";
+		}
+		
 	}
 }

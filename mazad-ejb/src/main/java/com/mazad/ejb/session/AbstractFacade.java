@@ -8,6 +8,7 @@ package com.mazad.ejb.session;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.validation.ConstraintViolationException;
 
 /**
  *
@@ -24,8 +25,12 @@ public abstract class AbstractFacade<T> {
     protected abstract EntityManager getEntityManager();
 
     public void create(T entity) {
-        getEntityManager().persist(entity);
-    }
+		try {
+			getEntityManager().persist(entity);
+		} catch (ConstraintViolationException e) {
+			System.out.println(e.getConstraintViolations());
+		}
+	}
 
     public void edit(T entity) {
         getEntityManager().merge(entity);

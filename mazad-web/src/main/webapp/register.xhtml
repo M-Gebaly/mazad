@@ -1,75 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-          
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <!---->
-    <h:body>
-        <ui:composition template="templates/masterTemplate.xhtml">
-            <ui:define name="content">
-                <div class="grow">
-                    <div class="container">
-                        <h2>Register</h2>
-                    </div>
-                </div>
-                <!-- grow -->
-                <!--content-->
-                <div class=" container">
-                    <div class="account">
-                        <div class="account-pass">
-                            <div class="col-md-8 account-top">
-                                <h:form prependId="false">
-                                    <div class="col-md-6 register-top-grid register-bottom-grid">
-                                        <h3>Personal Information</h3>
-                                        <div>
-                                            <span>Full Name</span>
-                                            <h:inputText value="#{user.name}" required="true" id="fname"/>  
-                                            <h:message for="fname"/>
-                                        </div>
-                                        <div>
-                                            <span>Birth date</span>
-                                            <h:inputText value="#{user.birthDate}" required="true" id="bd">
-                                                <f:convertDateTime pattern="MM/YYYY"/>
-                                            </h:inputText>
-                                            <h:message for="bd"/>
-                                        </div>
-                                        <div>
-                                            <span>Email Address</span>
-                                            <h:inputText value="#{user.email}" required="true" id="email">
-                                                <f:validator validatorId="emailValidator"/>
-                                            </h:inputText> 
-                                            <h:message for="email"/>
-                                        </div>
-                                        <div>
-                                            <span>Password</span>
-                                            <h:inputSecret value="#{user.password}" required="true" id="password">
-                                                <f:validateLength minimum="8"/>
-                                            </h:inputSecret>
-                                            <h:message for="password"/>
-                                        </div>
-                                        <p>
-                                            <h:commandButton value="Register" style="margin-right: 15px;width: 100px;" action="#{user.register}"/>
-                                            <h:commandButton value="Cancel" style="margin-right: 15px;width: 90px;" action="index" immediate="true"/>
-                                        </p>
-                                    </div>
-                                </h:form>
-                            </div>
-                            <div class="col-md-4 left-account">
-                                <a href="single.xhtml">
-                                    <h:graphicImage class="img-responsive" name="images/s1.jpg" /></a>
-                                <div class="five">
-                                    <h2>25% </h2><span>discount</span>
-                                </div>
-                                <a href="register.xhtml" class="create">Create an account</a>
-                                <div class="clearfix"> </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </ui:define>
-        </ui:composition>
-    </h:body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<!---->
+<h:body>
+	<ui:composition template="templates/masterTemplate.xhtml">
+		<ui:define name="content">
+			<div class="grow">
+				<div class="container">
+					<h2>Register</h2>
+				</div>
+			</div>
+			<!-- grow -->
+			<!--content-->
+			<div class=" container">
+				<div class="account">
+					<div class="account-pass">
+						<div class="col-md-8 account-top">
+							<h:form prependId="false">
+								<div class="col-md-6 register-top-grid register-bottom-grid">
+									<h3>Personal Information</h3>
+									<div>
+										<span>User name</span>
+										<h:inputText value="#{user.u.userName}" required="true"
+											id="fname" />
+										<h:message for="fname" />
+									</div>
+
+									<div>
+										<span>Email</span>
+										<h:inputText value="#{user.u.userEmail}" required="true"
+											id="email">
+											<f:validator validatorId="emailValidator" />
+										</h:inputText>
+										<h:message for="email" />
+									</div>
+									<div>
+										<span>Password</span>
+										<h:inputSecret value="#{user.u.userPassword}" required="true"
+											id="password">
+											<f:validateLength minimum="8" />
+										</h:inputSecret>
+										<h:message for="password" />
+									</div>
+									<div>
+										<span>Credit Card</span>
+										<h:inputText value="#{user.u.creditCard}" required="true"
+											id="creditcard">
+											<f:validateLength minimum="16" />
+										</h:inputText>
+										<h:message for="creditcard" />
+									</div>
+									<div>
+										<span>Address</span>
+										<h:inputText value="#{user.u.userAddress}" required="true"
+											id="address">
+											<f:validateLength minimum="1" />
+										</h:inputText>
+										<h:message for="address" />
+									</div>
+									<div>
+										<span>Auction limit</span>
+										<h:inputText value="#{user.u.auctionLimit}" required="true"
+											id="auctionlimit">
+											<f:validateLength minimum="1" />
+										</h:inputText>
+										<h:message for="auctionlimit" />
+									</div>
+									<div>
+										<h:selectOneRadio value="#{user.u.userRole}">
+											<f:selectItem itemValue="1" itemLabel="supplier" />
+											<f:selectItem itemValue="0" itemLabel="normal user" />
+										</h:selectOneRadio>
+									</div>
+									<p>
+										<h:commandButton value="Register"
+											style="margin-right: 15px;width: 100px;"
+											action="#{user.addUser}" />
+										<h:commandButton value="Cancel"
+											style="margin-right: 15px;width: 90px;" action="index"
+											immediate="true" />
+									</p>
+								</div>
+							</h:form>
+						</div>
+						<div class="col-md-4 left-account">
+							<a href="single.xhtml"> <h:graphicImage
+									class="img-responsive" name="images/s1.jpg" /></a>
+							<div class="five">
+								<h2>25%</h2>
+								<span>discount</span>
+							</div>
+							<a href="register.xhtml" class="create">Create an account</a>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
 </html>
