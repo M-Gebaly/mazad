@@ -6,7 +6,7 @@
 
     <application>
         <locale-config>
-            <ddefault-locale>en_US</ddefault-locale>
+            <default-locale>en_US</default-locale>
             <supported-locale>ar</supported-locale>
         </locale-config>
         <resource-bundle>

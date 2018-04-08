@@ -25,15 +25,15 @@
                                     <div class="col-md-6 register-top-grid">
                                         <h3>Personal information</h3>
                                         <div>
-                                            <span>Email</span>
-                                            <h:inputText styleClass="text-input" value="#{user.email}" id="email"/>
+                                            <span>User Name</span>
+                                            <h:inputText styleClass="text-input" value="#{user.u.userName}" id="username" required="true"/>
                                         </div>
                                         <div>
-                                            <h:message for="email" id="errorMsg"/>
+                                            <h:message for="username" id="errorMsg"/>
                                         </div>
                                         <div>
                                             <span>Password</span>
-                                            <h:inputSecret value="#{user.password}" id="password"/>
+                                            <h:inputSecret value="#{user.u.userPassword}" id="password" required="true"/>
                                         </div>
                                         <p>
                                             <h:commandButton value="Login" style="margin-right: 15px;width: 80px;" action="#{user.checkLogin}"/>

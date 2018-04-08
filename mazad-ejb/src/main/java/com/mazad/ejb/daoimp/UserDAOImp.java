@@ -8,8 +8,12 @@ package com.mazad.ejb.daoimp;
 import com.mazad.ejb.daoint.UserDAOInt;
 import com.mazad.ejb.entity.Users;
 import com.mazad.ejb.session.UsersFacade;
+
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.ejb.Stateful;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -18,6 +22,7 @@ import javax.naming.NamingException;
  *
  * @author M.Gebaly
  */
+@Stateful
 public class UserDAOImp implements UserDAOInt{
 
     UsersFacade usersFacade = lookupUsersFacadeBean();
@@ -37,5 +42,11 @@ public class UserDAOImp implements UserDAOInt{
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
+    }
+    
+    public List checkLogin(String userName , String password)
+    
+    {
+    	  return usersFacade.checkLogin(userName, password);
     }
 }

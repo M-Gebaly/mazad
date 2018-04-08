@@ -5,14 +5,21 @@
  */
 package com.mgebaly.view.controller;
 
-import java.util.Date;
-import java.util.Locale;
-import javax.faces.application.FacesMessage;
+import java.util.ArrayList;
+
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
+import javax.inject.Inject;
+
+import com.mazad.ejb.daoimp.UserDAOImp;
+import com.mazad.ejb.entity.Users;
+import com.mazad.ejb.session.AbstractFacade;
+import com.mazad.ejb.session.UsersFacade;
+import com.mazad.ejb.session.UsersFacadeLocal;
 
 /**
  *
@@ -23,86 +30,46 @@ import javax.faces.validator.ValidatorException;
 @SessionScoped
 public class UserBean {
 
-    private String password;
-    private String email;
-    private String name;
-    private Date birthDate;
-       
-    private String locale = "ar";
+	@Inject
+	public Users u;
+	@EJB
+	public UsersFacadeLocal fl;
 
-    public UserBean() {
-    }
+	public UsersFacadeLocal getFl() {
+		return fl;
+	}
 
-    public String checkLogin() {
-        return null;
-    }
+	public void setFl(UsersFacadeLocal fl) {
+		this.fl = fl;
+	}
 
-    public String register() {
-        return null;
-    }
+	@PostConstruct
+	public void init() {
+		u = new Users();
 
-    public void validateEmail(FacesContext context, UIComponent component, Object obj) {
-        String regexEmail
-                = "^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$";
+	}
 
-        String enteredEmail = (String) obj;
-        if (!enteredEmail.matches(regexEmail)) {
-            
-            FacesMessage message = new FacesMessage("Validation error", "Invalid Format of Email");
-            message.setSeverity(FacesMessage.SEVERITY_ERROR);
-            throw new ValidatorException(message);
-        }
-    }
+	public Users getU() {
+		return u;
+	}
 
-    public String changeLocaleMethod() {
-        if (locale.equals("ar")) {
-            locale = "en_US";
-        } else {
-            locale = "ar";
-        }
-        Locale localeObj = new Locale(locale);
-        FacesContext.getCurrentInstance().getViewRoot().setLocale(localeObj);
-        return null;
-    }
+	public void setU(Users u) {
+		this.u = u;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String checkLogin() {
+		List<Users> r = new ArrayList<>();
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+		r = fl.checkLogin(u.getUserName(), u.getUserPassword());
 
-    public String getEmail() {
-        return email;
-    }
+		if (r.isEmpty()) {
+			System.out.println("log in failed");
+			return null;
+		} else {
+			System.out.println("log in success");
+			return "index";
+		}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getLocale() {
-        return locale;
-    }
-
-    public void setLocale(String locale) {
-        this.locale = locale;
-    }
-
+	}
 }

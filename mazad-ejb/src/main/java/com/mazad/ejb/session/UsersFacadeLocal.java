@@ -30,4 +30,6 @@ public interface UsersFacadeLocal {
 
     int count();
     
+    List<Users>checkLogin(String name, String pass);
+    
 }
