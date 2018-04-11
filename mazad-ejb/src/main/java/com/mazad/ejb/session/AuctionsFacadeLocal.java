@@ -6,6 +6,8 @@
 package com.mazad.ejb.session;
 
 import com.mazad.ejb.entity.Auctions;
+import com.mazad.ejb.entity.Products;
+
 import java.util.List;
 import javax.ejb.Local;
 
