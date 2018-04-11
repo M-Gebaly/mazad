@@ -4,7 +4,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      >
+      
     <!---->
     <h:outputStylesheet name="css/style.css" />	
     <h:body>
@@ -20,18 +23,32 @@
                             <div class="content-top">
                                 <div class="grid-in">
                               	<!-- data model -->
-								<h:dataTable value="#{auction.model}" var="a" columnClasses="column1">
-									
-									<h:column>	
-									     <h:outputText value="#{a.auctionName}"  styleClass="name"/>
-									     <br></br><br></br>
-										<h:outputText value="#{a.endDate}" styleClass="name"/>
-										 <br></br><br></br>
-										<h:outputText value="#{a.productsList.size()}" styleClass="name"/>
-										<br></br>	
+								<h:dataTable value="#{auction.model}" var="a"
+									columnClasses="column1">
+
+									<h:column>
+										<h:outputText value="#{a.auctionName}" styleClass="name" />
+										<br></br>
+										<br></br>
+										<h:outputText value="#{a.endDate}" styleClass="name" />
+										<br></br>
+										<br></br>
 										
+										<ui:repeat var="o" value="#{a.productsList}"
+											varStatus="status">
+										    <h:outputText value="#{o.productPrice}" />
+										</ui:repeat>
+										<br></br>
+
 									</h:column>
-									
+                                     <h:column>
+                                       <h:dataTable value="#{product.dataModel}" var="p">
+                                          <h:column>
+                                           <h:outputText value="#{p.productName}" />
+                                          </h:column>
+                                       </h:dataTable>
+                                     </h:column>
+                                  
 								</h:dataTable>
 
 								<!-- data model -->   
