@@ -4,6 +4,9 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
+td{
+    text-align:left;
+}
 body{
     background:#fff;
     font-family: 'Roboto', sans-serif;
@@ -2930,4 +2933,33 @@ ul.qty li p{
     .amet-sed {
         width: 100%;
     }
+}
+
+.content {
+  width: 500px;
+  background:#c5d9f9;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+  -ms-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+.name{
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    height:40px;
+    border: 1px solid #ccc;;
+    background: #fafafa;
+    transition:0.2s ease-in-out;
+    outline: 0;
+    background: #eee;
+    border-radius: 5px 5px 0 0;
+    text-transform: lowercase;
+    font-size: medium;
+    font-weight: bold;
+   margin-left: 5px;
 }

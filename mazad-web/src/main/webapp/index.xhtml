@@ -3,9 +3,10 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <!---->
+    <h:outputStylesheet name="css/style.css" />	
     <h:body>
         <ui:composition template="templates/masterTemplate.xhtml">
             <ui:define name="content">
@@ -15,60 +16,25 @@
                 <!--content-->
                 <div class="container">
                     <div class="cont">
-                        <div class="content">
+                        <div class="content" style="align:left">
                             <div class="content-top">
                                 <div class="grid-in">
-                                    <div class="col-md-3 grid-top simpleCart_shelfItem">
-                                        <a href="single.xhtml" class="b-link-stripe b-animate-go  thickbox">
-                                            <h:graphicImage class="img-responsive" name="images/pi.jpg" />
-                                            <div class="b-wrapper">
-                                                <h3 class="b-animate b-from-left    b-delay03 ">
-                                                    <span>TRIBECA LIVING</span>
+                              	<!-- data model -->
+								<h:dataTable value="#{auction.model}" var="a" columnClasses="column1">
+									
+									<h:column>	
+									     <h:outputText value="#{a.auctionName}"  styleClass="name"/>
+									     <br></br><br></br>
+										<h:outputText value="#{a.endDate}" styleClass="name"/>
+										 <br></br><br></br>
+										<h:outputText value="#{a.productsList.size()}" styleClass="name"/>
+										<br></br>	
+										
+									</h:column>
+									
+								</h:dataTable>
 
-                                                </h3>
-                                            </div>
-                                        </a>
-
-
-                                        <p><a href="single.xhtml">TRIBECA LIVING</a></p>
-                                        <a href="#" class="item_add"><p class="number item_price"><i> </i>$500.00</p></a>
-                                    </div>
-                                    <div class="col-md-3 grid-top simpleCart_shelfItem">
-                                        <a href="single.xhtml" class="b-link-stripe b-animate-go  thickbox">
-                                            <h:graphicImage class="img-responsive" name="images/pi1.jpg" />
-                                            <div class="b-wrapper">
-                                                <h3 class="b-animate b-from-left    b-delay03 ">
-                                                    <span>ESSENTIAL</span>	
-                                                </h3>
-                                            </div>
-                                        </a>
-                                        <p><a href="single.xhtml">ESSENTIAL</a></p>
-                                        <a href="#" class="item_add"><p class="number item_price"><i> </i>$500.00</p></a>
-                                    </div>
-                                    <div class="col-md-3 grid-top simpleCart_shelfItem">
-                                        <a href="single.xhtml" class="b-link-stripe b-animate-go  thickbox">
-                                            <h:graphicImage class="img-responsive" name="images/pi2.jpg" />
-                                            <div class="b-wrapper">
-                                                <h3 class="b-animate b-from-left    b-delay03 ">
-                                                    <span>CLARISSA</span>	
-                                                </h3>
-                                            </div>
-                                        </a>
-                                        <p><a href="single.xhtml">CLARISSA</a></p>
-                                        <a href="#" class="item_add"><p class="number item_price"><i> </i>$500.00</p></a>
-                                    </div>
-                                    <div class="col-md-3 grid-top">
-                                        <a href="single.xhtml" class="b-link-stripe b-animate-go  thickbox">
-                                            <h:graphicImage class="img-responsive" name="images/pi4.jpg" />
-                                            <div class="b-wrapper">
-                                                <h3 class="b-animate b-from-left    b-delay03 ">
-                                                    <span>LITTLE HOME</span>	
-                                                </h3>
-                                            </div>
-                                        </a>
-                                        <p><a href="single.xhtml">LITTLE HOME</a></p>
-                                        <a href="#" class="item_add"><p class="number item_price"><i> </i>$500.00</p></a>
-                                    </div>
+								<!-- data model -->   
                                     <div class="clearfix"> </div>
                                 </div>
                             </div>

@@ -6,6 +6,11 @@
 package com.mazad.ejb.session;
 
 import com.mazad.ejb.entity.Auctions;
+import com.mazad.ejb.entity.Products;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,7 +24,8 @@ public class AuctionsFacade extends AbstractFacade<Auctions> implements Auctions
 
     @PersistenceContext(unitName = "com.mgebaly_mazad-ejb_ejb_1.0-SNAPSHOTPU")
     private EntityManager em;
-
+   
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;
@@ -28,5 +34,6 @@ public class AuctionsFacade extends AbstractFacade<Auctions> implements Auctions
     public AuctionsFacade() {
         super(Auctions.class);
     }
+
     
 }
