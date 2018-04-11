@@ -35,9 +35,11 @@
 										<br></br>
 										
 										<ui:repeat var="o" value="#{a.productsList}"
-											varStatus="status">
-										    <h:outputText value="#{o.productPrice}" />
+											>
+                                                                                    <c:set var="price" value="#{o.productPrice}"/>
+										    
 										</ui:repeat>
+                                                                                <p>#{a.productsList.stream().map(o->o.productPrice).sum()}</p>
 										<br></br>
 
 									</h:column>
