@@ -12,7 +12,9 @@
         <h:outputScript name="js/jquery.min.js" />
         <!-- Custom Theme files -->
         <!--theme-style-->
-        <h:outputStylesheet name="css/style.css" />	
+        <h:outputStylesheet name="css/style.css" />
+        <!--theme-style-->
+        <h:outputStylesheet name="css/custome.css" />
         <!--//theme-style-->
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta name="keywords" content="Mattress Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -25,6 +27,7 @@
                 $(".memenu").memenu();
             });</script>
         <h:outputScript name="js/simpleCart.min.js" />
+        <h:outputScript name="js/custome.js" />
     </h:head>
     <f:view>
         <h:body>
@@ -38,6 +41,18 @@
             <div class="footer w3layouts">
                 <ui:include src="/pieces/footer.xhtml"/>
             </div>
+            <script>
+                $(document).ready(function () {
+                    $("#showP").click(function () {
+
+                        if($('#form').hasClass('hidden')){
+                                $('#form').removeClass('hidden');
+                            }else{
+                                $('#form').addClass('hidden');
+                            }
+                    });
+                });
+            </script>
         </h:body>
     </f:view>
 </html>
