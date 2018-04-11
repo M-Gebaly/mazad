@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      >
+    <!---->
+    <h:body>
+        <ui:composition template="templates/masterTemplate.xhtml">
+            <ui:define name="content">
+                <div class="banner">
+                </div>
+
+                <!--content-->
+                <div class="container">
+                    <div class="cont">
+
+
+                        <h1 class="custome-merg">Add Auction</h1>
+                        
+                        
+                        <h:form class="border border-secondary">
+                            <div class="form-group">
+                                <label class="text-primary lable-merg">Auction Names</label>
+                                <h:inputText value="" a:type="email" class="form-control" a:placeholder="Enter email"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-primary lable-merg">Description</label>
+                                <h:inputTextarea rows="3" class="form-control"/>
+                            </div>
+
+                            <div class="form-check custome-merg">
+                                <h:selectOneRadio class="form-check-input text-primary" value="#">
+                                    <f:selectItem class="radiomerg" itemValue="1" itemLabel="  Use Supplier" />
+                                    <f:selectItem itemValue="0" itemLabel="  Not Use Supplier"/>
+                                    
+                                </h:selectOneRadio>
+                            </div>
+                            
+                            <h:selectOneMenu class="form-control custome-merg" value = "#"> 
+                                <f:selectItem itemValue = "1" itemLabel = "Item 1" />
+                                <f:selectItem itemValue = "2" itemLabel = "Item 2" /> 
+                            </h:selectOneMenu> 
+                            
+                            <h:commandButton value="Submit" action="#" class="btn btn-primary btn-lg btn-block custome-merg"/>
+                        </h:form>
+                        <button type="button" id="showP" class="btn btn-primary">
+                            <span class="badge badge-light">+</span> Add Product
+                        </button>
+                        <from id="form">
+                            <h1 class="custome-merg">Add Auction</h1>
+
+                            <div class="form-group">
+                                <label class="text-primary lable-merg">Product Names</label>
+                                <input type="text" jsf:value="#" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-primary lable-merg">Product Description</label>
+                                <input type="text" jsf:value="#" class="form-control"/>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="text-primary lable-merg">Product Price</label>
+                                <input type="number" jsf:value="#" class="form-control"/>
+                            </div>
+                            
+                            <button type="submit" jsf:action="#" class="btn btn-primary btn-lg btn-block custome-merg">Add</button>
+                        </from>
+                        
+
+                        <div class="clearfix"> </div>
+
+                    </div>
+                    
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

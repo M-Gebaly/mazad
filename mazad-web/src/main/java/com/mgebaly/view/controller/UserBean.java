@@ -67,7 +67,7 @@ public class UserBean {
 			return null;
 		} else {
 			System.out.println("log in success");
-			return "index";
+			return "products";
 		}
 	}
 	
