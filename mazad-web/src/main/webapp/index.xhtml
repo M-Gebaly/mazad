@@ -39,13 +39,20 @@
                                                 <c:set var="price" value="#{o.productPrice}"/>
 
                                             </ui:repeat>
-                                            <h4>
+                                            <h4 class="lable-merg">
                                             <span class="label label-danger">
                                                 #{a.productsList.stream().map(o->o.productPrice).sum()} LE
                                             </span>
                                             </h4>
                                             <h:form>
                                                 <center>
+                                                    
+                                                    
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">$</span>
+                                                        <h:inputText value="#" class="form-control"/>
+                                                            <span class="input-group-addon">.00</span>
+                                                    </div>
                                                     <h:commandButton class="btn btn-primary custome-merg" value="Bid" action="#"/>
                                                 </center>
                                             </h:form>
