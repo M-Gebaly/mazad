@@ -6,8 +6,9 @@
       xmlns:ui="http://java.sun.com/jsf/facelets" 
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       >
-      
+
     <!---->
     <h:outputStylesheet name="css/style.css" />	
     <h:body>
@@ -19,45 +20,48 @@
                 <!--content-->
                 <div class="container">
                     <div class="cont">
-                        <div class="content" style="align:left">
-                            <div class="content-top">
-                                <div class="grid-in">
-                              	<!-- data model -->
-								<h:dataTable value="#{auction.model}" var="a"
-									columnClasses="column1">
 
-									<h:column>
-										<h:outputText value="#{a.auctionName}" styleClass="name" />
-										<br></br>
-										<br></br>
-										<h:outputText value="#{a.endDate}" styleClass="name" />
-										<br></br>
-										<br></br>
-										
-										<ui:repeat var="o" value="#{a.productsList}"
-											>
-                                                                                    <c:set var="price" value="#{o.productPrice}"/>
-										    
-										</ui:repeat>
-                                                                                <p>#{a.productsList.stream().map(o->o.productPrice).sum()}</p>
-										<br></br>
+                        <!-- data model -->
 
-									</h:column>
-                                     <h:column>
-                                       <h:dataTable value="#{product.dataModel}" var="p">
-                                          <h:column>
-                                           <h:outputText value="#{p.productName}" />
-                                          </h:column>
-                                       </h:dataTable>
-                                     </h:column>
-                                  
-								</h:dataTable>
+                        <h:dataTable  value="#{auction.model}" var="a">
+                            <div class="row">
+                                <h:column class="col-sm-6 col-md-4">
 
-								<!-- data model -->   
-                                    <div class="clearfix"> </div>
-                                </div>
+                                    <div class="thumbnail">
+                                        <div class="caption">
+
+                                            <h3 class="lable-merg"><h:outputText class="list-group-item list-group-item-success" value="#{a.auctionName}" /></h3>
+                                            
+                                            <h5 class="lable-merg"><h:outputText class="list-group-item list-group-item-danger" value="#{a.endDate}" /></h5>
+
+                                            <ui:repeat var="o" value="#{a.productsList}"
+                                                       >
+                                                <c:set var="price" value="#{o.productPrice}"/>
+
+                                            </ui:repeat>
+                                            <h4>
+                                            <span class="label label-danger">
+                                                #{a.productsList.stream().map(o->o.productPrice).sum()} LE
+                                            </span>
+                                            </h4>
+                                            <h:form>
+                                                <center>
+                                                    <h:commandButton class="btn btn-primary custome-merg" value="Bid" action="#"/>
+                                                </center>
+                                            </h:form>
+                                            
+                                        </div>
+                                    </div>
+
+                                </h:column>
                             </div>
-                        </div>
+
+
+                        </h:dataTable>
+
+                        <!-- data model -->   
+                        <div class="clearfix"> </div>
+
                     </div>
                 </div>
             </ui:define>
