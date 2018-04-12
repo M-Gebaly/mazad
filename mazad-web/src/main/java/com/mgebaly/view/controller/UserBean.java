@@ -20,77 +20,80 @@ import com.mazad.ejb.entity.Users;
 import com.mazad.ejb.session.AbstractFacade;
 import com.mazad.ejb.session.UsersFacade;
 import com.mazad.ejb.session.UsersFacadeLocal;
+import java.io.Serializable;
 
 /**
  *
  * @author shalaby
- * 
+ *
  */
 @ManagedBean(name = "user")
 @SessionScoped
-public class UserBean {
+public class UserBean implements Serializable {
 
-	@Inject
-	public Users u;
-	@EJB
-	public UsersFacadeLocal fl;
+    public Users u;
+    @EJB
+    public UsersFacadeLocal fl;
 
-	public UsersFacadeLocal getFl() {
-		return fl;
-	}
+    public UserBean() {
+    }
 
-	public void setFl(UsersFacadeLocal fl) {
-		this.fl = fl;
-	}
+    public UsersFacadeLocal getFl() {
+        return fl;
+    }
 
-	@PostConstruct
-	public void init() {
-		u = new Users();
+    public void setFl(UsersFacadeLocal fl) {
+        this.fl = fl;
+    }
 
-	}
+    @PostConstruct
+    public void init() {
+        u = new Users();
 
-	public Users getU() {
-		return u;
-	}
+    }
 
-	public void setU(Users u) {
-		this.u = u;
-	}
+    public Users getU() {
+        return u;
+    }
 
-	public String checkLogin() {
-		List<Users> r = new ArrayList<>();
+    public void setU(Users u) {
+        this.u = u;
+    }
 
-		r = fl.checkLogin(u.getUserName(), u.getUserPassword());
+    public String checkLogin() {
+        List<Users> r = new ArrayList<>();
 
-		if (r.isEmpty()) {
-			System.out.println("log in failed");
-			return null;
-		} else {
-			System.out.println("log in success");
-			return "products";
-		}
-	}
-	
-	public String addUser ()
-	{
-		try {
-			Users temp = new Users();
-			temp.setUserName(u.getUserName());
-			temp.setAuctionLimit(u.getAuctionLimit());
-			temp.setUserPassword(u.getUserPassword());
-			temp.setUserEmail(u.getUserEmail());
-			temp.setUserAddress(u.getUserPassword());
-			temp.setCreditCard(u.getCreditCard());
-			temp.setUserRole(u.getUserRole());
-			fl.create(temp);
-	        System.out.println("added"); 
-	        System.out.println(temp);
-	        return "index";
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("error in adding");
-			return "register";
-		}
-		
-	}
+        r = fl.checkLogin(u.getUserName(), u.getUserPassword());
+        u = r.get(0);
+
+        if (r.isEmpty()) {
+            System.out.println("log in failed");
+            return null;
+        } else {
+            System.out.println("log in success");
+            return "products";
+        }
+    }
+
+    public String addUser() {
+        try {
+            Users temp = new Users();
+            temp.setUserName(u.getUserName());
+            temp.setAuctionLimit(u.getAuctionLimit());
+            temp.setUserPassword(u.getUserPassword());
+            temp.setUserEmail(u.getUserEmail());
+            temp.setUserAddress(u.getUserPassword());
+            temp.setCreditCard(u.getCreditCard());
+            temp.setUserRole(u.getUserRole());
+            fl.create(temp);
+            System.out.println("added");
+            System.out.println(temp);
+            return "index";
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println("error in adding");
+            return "register";
+        }
+
+    }
 }

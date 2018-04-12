@@ -19,10 +19,14 @@ import com.mazad.ejb.entity.Products;
 import com.mazad.ejb.entity.Users;
 import com.mazad.ejb.session.AuctionsFacadeLocal;
 import com.mazad.ejb.session.ProductsFacadeLocal;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import javax.faces.bean.ManagedProperty;
 
 @ManagedBean(name = "auction")
 @SessionScoped
-public class AuctionBean {
+public class AuctionBean implements Serializable{
 
 	@Inject
 	Auctions auction;
@@ -34,6 +38,9 @@ public class AuctionBean {
 	private DataModel<Auctions> model;
 	
 	List<Products> productList;
+        
+        @ManagedProperty(value = "#{user}")
+        private UserBean userBean;
 
 	
 	
@@ -41,6 +48,10 @@ public class AuctionBean {
 	    InitialContext context = new InitialContext();
 	    return (AuctionsFacadeLocal) context.lookup("java:global/mazad-ear/mazad-ejb-1.0-SNAPSHOT/AuctionsFacade!com.mazad.ejb.session.AuctionsFacadeLocal");
 	}
+        @PostConstruct
+	public void init() {
+            auction = new Auctions();
+        }
 	
 	public AuctionBean() {
 		// TODO Auto-generated constructor stub
@@ -56,7 +67,7 @@ public class AuctionBean {
 	    model= new ListDataModel<>(AuctionsList);
 	    
 	}
-	
+        
 	//getter and setter 
 	
 	public List<Auctions> getAuctionsList() {
@@ -100,6 +111,32 @@ public class AuctionBean {
 	public void setProductList(List<Products> productList) {
 		this.productList = productList;
 	}
-	
-	
+
+    /**
+     * @return the userBean
+     */
+    public UserBean getUserBean() {
+        return userBean;
+    }
+
+    /**
+     * @param userBean the userBean to set
+     */
+    public void setUserBean(UserBean userBean) {
+        this.userBean = userBean;
+    }
+
+    public void addAuction() {
+        Auctions auc = new Auctions();
+        System.out.println(auction.getEndDate());
+        
+        auc.setAuctionName(auction.getAuctionName());
+        auc.setAprove(BigInteger.ZERO);
+        auc.setOwnerId(userBean.u);
+        auc.setEndDate(auction.getEndDate());
+        
+         System.out.println(auc.getEndDate());
+        AFL.create(auc);
+        System.out.println("added");
+    }
 }

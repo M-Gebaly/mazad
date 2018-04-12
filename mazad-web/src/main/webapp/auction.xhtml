@@ -26,27 +26,18 @@
                         <h:form class="border border-secondary">
                             <div class="form-group">
                                 <label class="text-primary lable-merg">Auction Names</label>
-                                <h:inputText value="" a:type="email" class="form-control" a:placeholder="Enter email"/>
+                                <h:inputText value="#{auction.auction.auctionName}" class="form-control" a:placeholder="Enter Auction Email"/>
                             </div>
                             <div class="form-group">
-                                <label class="text-primary lable-merg">Description</label>
-                                <h:inputTextarea rows="3" class="form-control"/>
+                                <label class="text-primary lable-merg">End Date</label>
+                                <h:inputText a:type="date" value="#{auction.auction.endDate}" class="form-control">
+                                    <f:convertDateTime pattern="yyyy-mm-dd"/>
+                                </h:inputText>
                             </div>
 
-                            <div class="form-check custome-merg">
-                                <h:selectOneRadio class="form-check-input text-primary" value="#">
-                                    <f:selectItem class="radiomerg" itemValue="1" itemLabel="  Use Supplier" />
-                                    <f:selectItem itemValue="0" itemLabel="  Not Use Supplier"/>
-                                    
-                                </h:selectOneRadio>
-                            </div>
+                  
                             
-                            <h:selectOneMenu class="form-control custome-merg" value = "#"> 
-                                <f:selectItem itemValue = "1" itemLabel = "Item 1" />
-                                <f:selectItem itemValue = "2" itemLabel = "Item 2" /> 
-                            </h:selectOneMenu> 
-                            
-                            <h:commandButton value="Submit" action="#" class="btn btn-primary btn-lg btn-block custome-merg"/>
+                            <h:commandButton value="Submit" action="#{auction.addAuction}" class="btn btn-primary btn-lg btn-block custome-merg"/>
                         </h:form>
                         <button type="button" id="showP" class="btn btn-primary">
                             <span class="badge badge-light">+</span> Add Product
