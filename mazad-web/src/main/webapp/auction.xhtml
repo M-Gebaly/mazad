@@ -7,6 +7,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
       >
     <!---->
     <h:body>
@@ -24,13 +25,16 @@
                         
                         
                         <h:form class="border border-secondary">
+                            
                             <div class="form-group">
                                 <label class="text-primary lable-merg">Auction Names</label>
-                                <h:inputText value="#{auction.auction.auctionName}" class="form-control" a:placeholder="Enter Auction Email"/>
+                                <h:message for="auctionname"/>
+                                <h:inputText id="auctionname" value="#{auction.auction.auctionName}" class="form-control" a:placeholder="Enter Auction Email" required="true" requiredMessage="Name of Auction is Required"/>
                             </div>
                             <div class="form-group">
                                 <label class="text-primary lable-merg">End Date</label>
-                                <h:inputText a:type="date" value="#{auction.auction.endDate}" class="form-control">
+                                <h:message for="auctiondate"/>
+                                <h:inputText id="auctiondate" a:type="date" value="#{auction.auction.endDate}" class="form-control" required="true" requiredMessage="Name of Auction is Required">
                                     <f:convertDateTime pattern="yyyy-mm-dd"/>
                                 </h:inputText>
                             </div>

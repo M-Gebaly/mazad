@@ -13,13 +13,15 @@ import javax.naming.NamingException;
 
 import com.mazad.ejb.entity.Products;
 import com.mazad.ejb.session.ProductsFacadeLocal;
+import java.io.Serializable;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedProperty;
 
 @ManagedBean(name = "product")
 @SessionScoped
-public class ProductsBean {
-
-	@Inject
-	Products product;
+public class ProductsBean implements Serializable{
+    
+    Products product;
 	
    ProductsFacadeLocal facadeLocal;
    
@@ -27,11 +29,19 @@ public class ProductsBean {
    
    List<Products> list ;
    
+   @ManagedProperty(value = "#{auction}")
+   private AuctionBean auctionBean;
+   
    
    private ProductsFacadeLocal getEJB() throws NamingException {
 	    InitialContext context = new InitialContext();
 	    return (ProductsFacadeLocal) context.lookup("java:global/mazad-ear/mazad-ejb-1.0-SNAPSHOT/ProductsFacade!com.mazad.ejb.session.ProductsFacadeLocal");
 	}
+   
+   @PostConstruct
+   public void init(){
+       product = new Products();
+   }
    
 	public ProductsBean() {
 		// TODO Auto-generated constructor stub
@@ -50,8 +60,7 @@ public class ProductsBean {
 		 dataModel= new ListDataModel<>(list);
 	}
 	
-	
-
+ 
 	
 	
 	
@@ -89,5 +98,30 @@ public class ProductsBean {
 	public void setList(List<Products> list) {
 		this.list = list;
 	}
+           /**
+     * @return the auctionBean
+     */
+    public AuctionBean getAuctionBean() {
+        return auctionBean;
+    }
+
+    /**
+     * @param auctionBean the auctionBean to set
+     */
+    public void setAuctionBean(AuctionBean auctionBean) {
+        this.auctionBean = auctionBean;
+    }
+
+    
+    public String addProduct(){
+        Products pro = new Products();
+        pro.setAuctionId(auctionBean.auction);
+        pro.setProductName(product.getProductName());
+        pro.setProductDesc(product.getProductDesc());
+        pro.setProductPrice(product.getProductPrice());
+        facadeLocal.create(pro);
+        System.out.println("Adddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+        return "addProduct";
+    }
 	
 }

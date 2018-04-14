@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <!---->
+    <h:body>
+        <ui:composition template="templates/masterTemplate.xhtml">
+            <ui:define name="content">
+                <div class="banner">
+                </div>
+
+                <!--content-->
+                <div class="container">
+                    <div class="cont">
+                        <h:form>
+                            <p:panel id="panel" header="New Prouduct">
+
+                                <p:messages id="msgs" />
+
+                                
+                                    <div class="custome-merg">
+                                        <p:outputLabel for="productName" value="ProductName" />
+                                        <p:inputText id="productName" value="#{product.product.productName}" required="true" label="ProductName">
+                                            <f:validateLength minimum="2" />
+                                        </p:inputText>
+                                        <p:message for="productName" display="icon" />
+                                    </div>
+
+                                    <div class="custome-merg">
+                                        <p:outputLabel for="description" value="Description" />
+                                        <p:inputTextarea rows="5" cols="50" id="description" value="#{product.product.productDesc}" label="Description" required="true">
+                                            <f:validateLength minimum="20" />
+                                        </p:inputTextarea>
+                                        <p:message for="description" display="icon" />
+                                    </div>
+
+                                    <div class="custome-merg">
+                                        <p:outputLabel for="productPrice" value="productPrice" />
+                                        <p:spinner id="productPrice" value="#{product.product.productPrice}" required="true" label="ProductName" min="0">
+                                            <f:validateLength minimum="1" />
+                                        </p:spinner>
+                                        <p:message for="productPrice" display="icon" />
+                                    </div>
+
+                                
+
+                                <p:commandButton value="Add" update="panel" action="#{product.addProduct}" icon="ui-icon-check" />
+                            </p:panel>
+                        </h:form>
+
+
+                        <div class="clearfix"> </div>
+
+                    </div>
+
+                </div>
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+</html>
+

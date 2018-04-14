@@ -20,7 +20,6 @@ import com.mazad.ejb.entity.Users;
 import com.mazad.ejb.session.AuctionsFacadeLocal;
 import com.mazad.ejb.session.ProductsFacadeLocal;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import javax.faces.bean.ManagedProperty;
 
@@ -28,7 +27,6 @@ import javax.faces.bean.ManagedProperty;
 @SessionScoped
 public class AuctionBean implements Serializable{
 
-	@Inject
 	Auctions auction;
 	
 	AuctionsFacadeLocal AFL;
@@ -126,7 +124,7 @@ public class AuctionBean implements Serializable{
         this.userBean = userBean;
     }
 
-    public void addAuction() {
+    public String addAuction() {
         Auctions auc = new Auctions();
         System.out.println(auction.getEndDate());
         
@@ -137,6 +135,8 @@ public class AuctionBean implements Serializable{
         
          System.out.println(auc.getEndDate());
         AFL.create(auc);
+        auction.setAuctionId(auc.getAuctionId());
         System.out.println("added");
+        return "addProduct";
     }
 }
