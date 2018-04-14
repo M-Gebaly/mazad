@@ -2,115 +2,152 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
 
-<!---->
-<h:outputStylesheet name="css/style.css" />
-<h:body>
-	<ui:composition template="templates/masterTemplate.xhtml">
-		<ui:define name="content">
-			<div class="banner"></div>
+    <!---->
+    <h:outputStylesheet name="css/style.css" />
+    <h:body>
+        <ui:composition template="templates/masterTemplate.xhtml">
+            <ui:define name="content">
+                <div class="banner"></div>
 
-			<!--content-->
-			<div class="container">
-				<div class="cont">
+                <!--content-->
+                <div class="container">
+                    <div class="cont">
 
-					<!-- data model -->
+                        <!-- data model -->
 
-					<h:dataTable value="#{auction.model}" var="a">
-						<div class="row">
-							<h:column class="col-sm-6 col-md-4">
+                        <h:dataTable value="#{auction.model}" var="a">
 
-								<div class="thumbnail">
-									<div class="caption">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <h:column>
 
+                                        <div class="thumbnail">
+                                            <div class="caption">
 
-											<span class="btn btn-default"> <label
-												class=" btn-bordered-primary">Auction name :</label> <h:outputText
-													value="#{a.auctionName}"
-													styleClass="btn btn-square-toround" />
-											</span>
-										
+                                                <h3>
+                                                    <label class=" btn-bordered-primary" >Auction name</label> <span
+                                                        class="btn btn-default" style="width: 100%;"> <h:outputText
+                                                            value="#{a.auctionName}"
+                                                            styleClass="btn btn-default" />
+                                                    </span>
+                                                </h3>
+                                                <span> <h:graphicImage value="resources/images/s1.jpg"
+                                                                       width="350" height="350" />
+                                                </span>
 
-										
-											<span class="btn btn-default"> <label
-												class="btn-bordered-primary">Auction End Date :</label> <h:outputText
-													class="btn btn-square-toround" value="#{a.endDate}" />
-											</span>
-
-										
-										<ui:repeat var="o" value="#{a.productsList}">
-											<c:set var="price" value="#{o.productPrice}" />
-
-										</ui:repeat>
-										<span class="btn btn-default"> <label
-											class="btn-bordered-primary">Auction StartPrice :</label> <span
-											class="btn btn-square-toround">
-												#{a.productsList.stream().map(o->o.productPrice).sum()} LE </span>
-										</span>
-										<!-- time  -->
-
-										<h:form>
+                                            </div>
+                                        </div>
 
 
-											<span class="btn btn-default"> <label
-												class="btn-bordered-primary">Auction Available Time
-													:</label> <h:outputText value="#{auction.minuteLefted}"
-													id="remindTime" class="btn btn-square-toround" />
-											</span>
-											<p:poll interval="1"
-												listener="#{auction.getTimeAvailable(a.endDate)}"
-												update="remindTime" />
-
-										</h:form>
-
-										<!-- time -->
-										<h:form>
-											<center>
+                                    </h:column>
+                                    <h:column class="col-sm-6 col-md-4">
+                                        <div class="thumbnail">
+                                            <div class="caption">
 
 
-												<div class="input-group">
-													<span class="input-group-addon">$</span>
-													<h:inputText value="#" class="form-control" />
-													<span class="input-group-addon">.00</span>
-												</div>
-												<h:commandButton class="btn btn-primary custome-merg"
-													value="Bid" action="#" />
-											</center>
-										</h:form>
-										<h:form>
-											<center>
+                                                <br></br> <br></br>
+                                                <h3>
+                                                    <label class=" btn-bordered-primary" style="width: 100%;">End
+                                                        Date </label>
+                                                </h3>
+                                                <br></br>
+                                                <h3>
+                                                    <span class="btn btn-default" style="width: 100%;"> <h:outputText
+                                                            class="btn btn-default" value="#{a.endDate}" />
+                                                    </span>
+                                                </h3>
+                                                <br></br>
+                                                <!-- time  -->
+                                                <h:form>
+                                                    <h3>
+                                                        <label class=" btn-bordered-primary" style="width: 100%;">available
+                                                            time </label>
+                                                    </h3>
+                                                    <br></br>
+                                                    <span class="btn btn-default" style="width: 100%;"> <h:outputText
+                                                            value="#{auction.minuteLefted}" id="remindTime"
+                                                            class="btn btn-default" />
+                                                    </span>
+                                                    <p:poll interval="1"
+                                                            listener="#{auction.getTimeAvailable(a.endDate)}"
+                                                            update="remindTime" />
 
+                                                </h:form>
 
-												<div class="input-group">
-													<span class="input-group-addon">$</span>
-													<h:inputText value="#{a.auctionId}" class="form-control" />
-													<span class="input-group-addon">.00</span>
-												</div>
-													<h:commandButton action="#{auction.viewProduct(a.auctionId)}" value="View Auction products" class="btn btn-primary custome-merg" />
-											</center>
-										</h:form>
+                                                <!-- time -->
+                                                <ui:repeat var="o" value="#{a.productsList}">
+                                                    <c:set var="price" value="#{o.productPrice}" />
+                                                </ui:repeat>
+                                                <br></br>
+                                                <h3>
+                                                    <label class=" btn-bordered-primary" style="width: 100%;">Auction
+                                                        StartPrice</label>
+                                                </h3>
+                                                <br></br> <span class="btn btn-default" style="width: 100%;">
 
-									</div>
-								</div>
+                                                    <span class="btn btn-square-toround">
+                                                        #{a.productsList.stream().map(o->o.productPrice).sum()} LE </span>
+                                                </span>
+                                                <br></br>
+                                                <h:form>
+                                                    <h:commandButton action="#{auction.viewProduct(a.auctionId)}" value="View Auction products"
+                                                                 class="btn btn-danger custome-merg" style="width: 100%;" />
+                                                </h:form>
+                                                
+                                            </div>
+                                        </div>
 
-							</h:column>
-						</div>
+                                    </h:column>
+                                    <h:column>
+                                        <div class="thumbnail">
+                                            <div class="caption">
+                                                <label class="btn btn-primary" style="width: 100%; font-size: 110%;">you can bid here</label>
+                                                <br></br><br></br><br></br>
+                                                <div class="bidform">
+                                                    <h:form>
+                                                        <center>
 
+                                                            <div class="input-group" style="width: 100%;">
+                                                                <span class="input-group-addon">$</span>
+                                                                <h:inputText value="#" class="form-control" />
+                                                                <span class="input-group-addon">.00</span>
+                                                            </div>
+                                                            <h:commandButton class="btn btn-danger custome-merg"
+                                                                             value="Bid" action="#" style="width: 100%;" />
 
-					</h:dataTable>
+                                                        </center>
+                                                    </h:form>
+                                                </div>
+                                                <br></br><br></br><br></br>
+                                                <label class="btn btn-primary" style="width: 100%;">winner price until now </label>
+                                                <br></br><br></br><br></br>
 
-					<!-- data model -->
-					<div class="clearfix"></div>
+                                                <span class="btn btn-default" style="width: 100%;"> <h:outputText
+                                                        value="50" id="remindTime"
+                                                        class="btn btn-default" />
+                                                </span>
+                                            </div>
+                                        </div>
 
-				</div>
-			</div>
-		</ui:define>
-	</ui:composition>
-</h:body>
+                                    </h:column>
+
+                                </div>
+                            </div>
+                        </h:dataTable>
+
+                        <!-- data model -->
+                        <div class="clearfix"></div>
+
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
 </html>
