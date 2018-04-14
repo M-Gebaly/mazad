@@ -21,6 +21,7 @@ import com.mazad.ejb.entity.Users;
 import com.mazad.ejb.session.AuctionsFacadeLocal;
 import com.mazad.ejb.session.ProductsFacadeLocal;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -40,6 +41,8 @@ public class AuctionBean implements Serializable{
 	private DataModel<Auctions> model;
 	
 	List<Products> productList;
+        
+        private DataModel<Products> productsModel;
 	
 	String minuteLefted;
 	
@@ -85,8 +88,7 @@ public class AuctionBean implements Serializable{
 
 		Duration d = Duration.between(current.toInstant(),t.toInstant());
 
-		System.out.println(t);
-		System.out.println(current);
+
 
 		minuteLefted =(int)d.toMillis()/1000 +": second" +"   "+(int)d.toMinutes()+": minutes"+"  " +d.toDays()+": day";
          // minuteLefted = d.toString();
@@ -164,5 +166,30 @@ public class AuctionBean implements Serializable{
         auction.setAuctionId(auc.getAuctionId());
         System.out.println("added");
         return "addProduct";
+    }
+    
+    public String viewProduct(String id){
+        System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+        auction = AFL.find(BigDecimal.valueOf(Double.parseDouble(id)));
+        productsModel = new ListDataModel<>(auction.getProductsList());
+        System.out.println(auction.getAuctionId());
+        
+        System.out.println(productsModel.getRowData().getProductName());
+
+        return "viewProducts";
+    }
+
+    /**
+     * @return the productsModel
+     */
+    public DataModel<Products> getProductsModel() {
+        return productsModel;
+    }
+
+    /**
+     * @param productsModel the productsModel to set
+     */
+    public void setProductsModel(DataModel<Products> productsModel) {
+        this.productsModel = productsModel;
     }
 }

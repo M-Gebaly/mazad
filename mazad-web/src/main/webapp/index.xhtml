@@ -89,10 +89,10 @@
 
 												<div class="input-group">
 													<span class="input-group-addon">$</span>
-													<h:inputText value="#" class="form-control" />
+													<h:inputText value="#{a.auctionId}" class="form-control" />
 													<span class="input-group-addon">.00</span>
 												</div>
-													<h:commandButton action="#" value="View Auction products" class="btn btn-primary custome-merg" />
+													<h:commandButton action="#{auction.viewProduct(a.auctionId)}" value="View Auction products" class="btn btn-primary custome-merg" />
 											</center>
 										</h:form>
 
