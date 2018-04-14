@@ -7,6 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
       >
 
     <!---->
@@ -34,8 +35,7 @@
                                             
                                             <h5 class="lable-merg"><h:outputText class="list-group-item list-group-item-danger" value="#{a.endDate}" /></h5>
 
-                                            <ui:repeat var="o" value="#{a.productsList}"
-                                                       >
+                                            <ui:repeat var="o" value="#{a.productsList}">
                                                 <c:set var="price" value="#{o.productPrice}"/>
 
                                             </ui:repeat>
@@ -44,9 +44,17 @@
                                                 #{a.productsList.stream().map(o->o.productPrice).sum()} LE
                                             </span>
                                             </h4>
+                                            <!-- time  -->
+                                             
+                                              <h:form>
+                                               <h:outputText value="#{auction.minuteLefted}"  id="remindTime"/>
+                                               <p:poll interval="1" listener="#{auction.getTimeAvailable(a.endDate)}" update="remindTime" />
+                                             </h:form>
+                                            
+                                            <!-- time -->
                                             <h:form>
                                                 <center>
-                                                    
+                                                   
                                                     
                                                     <div class="input-group">
                                                         <span class="input-group-addon">$</span>

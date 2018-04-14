@@ -71,7 +71,7 @@ public class UserBean implements Serializable {
             return null;
         } else {
             System.out.println("log in success");
-            return "products";
+            return "index";
         }
     }
 
@@ -88,7 +88,7 @@ public class UserBean implements Serializable {
             fl.create(temp);
             System.out.println("added");
             System.out.println(temp);
-            return "index";
+            return "login";
         } catch (Exception e) {
             // TODO: handle exception
             System.out.println("error in adding");

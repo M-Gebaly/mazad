@@ -2,6 +2,7 @@ package com.mgebaly.view.controller;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -21,6 +22,9 @@ import com.mazad.ejb.session.AuctionsFacadeLocal;
 import com.mazad.ejb.session.ProductsFacadeLocal;
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 import javax.faces.bean.ManagedProperty;
 
 @ManagedBean(name = "auction")
@@ -36,8 +40,18 @@ public class AuctionBean implements Serializable{
 	private DataModel<Auctions> model;
 	
 	List<Products> productList;
-        
-        @ManagedProperty(value = "#{user}")
+	
+	String minuteLefted;
+	
+	
+		public String getMinuteLefted() {
+		return minuteLefted;
+	}
+	public void setMinuteLefted(String minuteLefted) {
+		this.minuteLefted = minuteLefted;
+	}
+
+		@ManagedProperty(value = "#{user}")
         private UserBean userBean;
 
 	
@@ -64,6 +78,18 @@ public class AuctionBean implements Serializable{
 	    AuctionsList=AFL.findAll();
 	    model= new ListDataModel<>(AuctionsList);
 	    
+	}
+	
+	public void getTimeAvailable(Date t) {
+		Date current = new Date();
+
+		Duration d = Duration.between(current.toInstant(),t.toInstant());
+
+		System.out.println(t);
+		System.out.println(current);
+
+		//minuteLefted =(int)d.toMinutes()*60 +": second" +"   "+(int)d.toMinutes()+": minutes"+"  " +d.toDays()+"day";
+          minuteLefted = d.toString();
 	}
         
 	//getter and setter 
