@@ -96,4 +96,11 @@ public class UserBean implements Serializable {
         }
 
     }
+    
+    public void biddingAction (int userId , int AuctionId , float amount)
+    {
+    	
+    }
+    
+    
 }

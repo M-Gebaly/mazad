@@ -88,8 +88,8 @@ public class AuctionBean implements Serializable{
 		System.out.println(t);
 		System.out.println(current);
 
-		//minuteLefted =(int)d.toMinutes()*60 +": second" +"   "+(int)d.toMinutes()+": minutes"+"  " +d.toDays()+"day";
-          minuteLefted = d.toString();
+		minuteLefted =(int)d.toMillis()/1000 +": second" +"   "+(int)d.toMinutes()+": minutes"+"  " +d.toDays()+": day";
+         // minuteLefted = d.toString();
 	}
         
 	//getter and setter 
