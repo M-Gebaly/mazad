@@ -4,12 +4,44 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
+
+
+.caption
+{
+	background: #eee url(http://subtlepatterns.com/patterns/sativa.png);
+	 
+}
+.thumbnail
+{
+ margin:10px;	
+}
+tr
+{
+	background: #eee url(http://subtlepatterns.com/patterns/sativa.png);
+	margin: 20px;
+	width: 100%;
+	height: 50px;
+}
 td{
     text-align:left;
+}
+.btn btn-default{
+
+	font-size: bold;
 }
 body{
     background:#fff;
     font-family: 'Roboto', sans-serif;
+}
+h3{
+	
+	text-align: center;
+	background: #3267bc;
+    border: 1px solid #ccc;
+    font-weight: bolder;
+    color: white;
+     border-radius: 5px 5px 5px 5px;
+     height: 20%;
 }
 a{
     transition: 0.5s all;
@@ -22,6 +54,9 @@ ul{
     padding: 0;
     margin: 0;	
 }
+label,span{
+	font-weight: bold;
+}
 h1,h2,h3,h4,h5,h6,label,p{
     margin:0;	
 }
@@ -31,6 +66,17 @@ h1,h2,h3,h4,h5,h6,label,p{
     float:left;
 }
 
+.bidform{
+    margin:26px;
+    padding: 10px 20px;
+    background:#c2bfbe;
+    border-radius: 10px 10px 10px 10px;
+    color: white;
+    font-size: medium;
+    font-weight: bold;
+    
+    
+}
 .itemContainer div{
     float:left;
     margin: 5px 20px 5px 20px ;
@@ -2963,3 +3009,5 @@ ul.qty li p{
     font-weight: bold;
    margin-left: 5px;
 }
+
+body{background: #eee url(http://subtlepatterns.com/patterns/sativa.png);}

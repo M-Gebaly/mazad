@@ -6,6 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <!---->
+<h:outputStylesheet name="css/style.css" />
 <h:body>
 	<ui:composition template="templates/masterTemplate.xhtml">
 		<ui:define name="content">
@@ -16,18 +17,17 @@
 			</div>
 			<!-- grow -->
 			<!--content-->
-			<div class=" container">
+			<div class=" container" >
 				<div class="account">
 					<div class="account-pass">
 						<div class="col-md-8 account-top">
 							<h:form prependId="false">
 								<div class="col-md-6 register-top-grid register-bottom-grid">
-									<h3>Personal Information</h3>
 									<div>
 										<span>User name</span>
 										<h:inputText value="#{user.u.userName}" required="true"
 											id="fname" />
-										<h:message for="fname" />
+										<h:message for="fname" styleClass=""/>
 									</div>
 
 									<div>
