@@ -30,4 +30,6 @@ public interface BidderAuctionFacadeLocal {
 
     int count();
     
+    int getWinnerPrice();
+    
 }
