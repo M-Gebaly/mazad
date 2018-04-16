@@ -141,7 +141,7 @@
 												<span class="btn btn-default" style="width: 100%;"> <h:outputText
 														value="#{auction.winner}" id="winner" class="btn btn-default" />
 												</span>
-												<p:poll interval="1" listener="#{auction.getWinnerPrice()}"
+												<p:poll interval="1" listener="#{auction.getWinnerPrice(a)}"
 													update="winner" />
 											</h:form>
 

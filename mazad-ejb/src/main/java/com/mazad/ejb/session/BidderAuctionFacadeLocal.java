@@ -5,6 +5,7 @@
  */
 package com.mazad.ejb.session;
 
+import com.mazad.ejb.entity.Auctions;
 import com.mazad.ejb.entity.BidderAuction;
 import java.util.List;
 import javax.ejb.Local;
@@ -30,6 +31,6 @@ public interface BidderAuctionFacadeLocal {
 
     int count();
     
-    int getWinnerPrice();
+    int getWinnerPrice(Auctions auctionId);
     
 }

@@ -252,7 +252,7 @@ public class AuctionBean implements Serializable{
     	List<BidderAuction> allAuction = new ArrayList<>();
     	allAuction= BAFL.findAll();
     	for (BidderAuction ba : allAuction) {
-			if(amount.intValue() > ba.getBidAmount().intValue())
+			if(amount.intValue() > ba.getBidAmount().intValue()&& bidderAuction.getAuctions().getAuctionId()==ba.getAuctions().getAuctionId())
 			{
 				ba.setWinner(BigInteger.ZERO);
 				bidderAuction.setWinner(BigInteger.ONE);
@@ -281,9 +281,9 @@ public class AuctionBean implements Serializable{
 	public void setWinner(int winner) {
 		this.winner = winner;
 	}
-	public void getWinnerPrice()
+	public void getWinnerPrice(Auctions id)
 	{
-		winner= BAFL.getWinnerPrice();
+		winner= BAFL.getWinnerPrice(id);
 	}
     
     

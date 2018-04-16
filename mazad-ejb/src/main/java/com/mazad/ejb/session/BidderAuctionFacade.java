@@ -5,6 +5,7 @@
  */
 package com.mazad.ejb.session;
 
+import com.mazad.ejb.entity.Auctions;
 import com.mazad.ejb.entity.BidderAuction;
 
 import java.math.BigInteger;
@@ -35,11 +36,12 @@ public class BidderAuctionFacade extends AbstractFacade<BidderAuction> implement
 	} 
 
 	@Override
-	public int getWinnerPrice() {
+	public int getWinnerPrice(Auctions id) {
 		System.out.println("searching for winner");
 		List<BigInteger> list = new ArrayList<>();
-		list = getEntityManager().createQuery("select p.bidAmount from BidderAuction p where p.winner = 1")
-				.getResultList();
+		list = getEntityManager().createQuery("select p.bidAmount from BidderAuction p where p.winner = 1 and p.auctions = :id")
+				.setParameter("id", id).getResultList();
+		
 		if(list.size()==0)
 		{
 			return 0;
