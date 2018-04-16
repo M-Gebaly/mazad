@@ -277,6 +277,7 @@ public class AuctionBean implements Serializable{
         	}
     	
     	System.out.println("bid succrsufully with " + bidderAuction.getBidAmount());
+    	amount=null;
     }
 	
 	int winner=0;
