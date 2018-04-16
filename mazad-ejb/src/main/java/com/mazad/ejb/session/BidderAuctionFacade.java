@@ -37,7 +37,6 @@ public class BidderAuctionFacade extends AbstractFacade<BidderAuction> implement
 
 	@Override
 	public int getWinnerPrice(Auctions id) {
-		System.out.println("searching for winner");
 		List<BigInteger> list = new ArrayList<>();
 		list = getEntityManager().createQuery("select p.bidAmount from BidderAuction p where p.winner = 1 and p.auctions = :id")
 				.setParameter("id", id).getResultList();
@@ -48,7 +47,6 @@ public class BidderAuctionFacade extends AbstractFacade<BidderAuction> implement
 		}
 		else
 		{
-			System.out.println(list.get(0));
 			return list.get(0).intValue();
 		}
 		

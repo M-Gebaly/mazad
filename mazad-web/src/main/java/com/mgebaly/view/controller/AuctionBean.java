@@ -249,7 +249,6 @@ public class AuctionBean implements Serializable{
     	pk.setBidderId(userBean.u.getUserId().toBigInteger());
     	
     	bidderAuction.setBidderAuctionPK(pk);
-    	System.out.println(bidderAuction.getBidderAuctionPK());
     	
     	
      
@@ -276,7 +275,6 @@ public class AuctionBean implements Serializable{
         		BAFL.edit(bidderAuction);
         	}
     	
-    	System.out.println("bid succrsufully with " + bidderAuction.getBidAmount());
     	amount=null;
     }
 	
