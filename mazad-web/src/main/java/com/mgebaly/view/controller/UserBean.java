@@ -11,8 +11,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import com.mazad.ejb.daoimp.UserDAOImp;
@@ -64,12 +66,20 @@ public class UserBean implements Serializable {
         List<Users> r = new ArrayList<>();
 
         r = fl.checkLogin(u.getUserName(), u.getUserPassword());
-        u = r.get(0);
-
+     
         if (r.isEmpty()) {
+        	
             System.out.println("log in failed");
-            return null;
+            
+            
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            FacesMessage facesMessage = new FacesMessage("user name or password may be wrong");
+            facesContext.addMessage(null, facesMessage);
+            
+            return "login";
+            
         } else {
+        	u = r.get(0);
             System.out.println("log in success");
             return "index";
         }

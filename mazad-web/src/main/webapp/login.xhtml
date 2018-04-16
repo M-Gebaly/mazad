@@ -23,7 +23,9 @@
                             <div class="col-md-8 account-top">
                                 <h:form prependId="false">
                                     <div class="col-md-6 register-top-grid">
-                                        <h3>Personal information</h3>
+                                      
+								<h:messages />
+							
                                         <div>
                                             <span>User Name</span>
                                             <h:inputText styleClass="text-input" value="#{user.u.userName}" id="username" required="true"/>
@@ -41,7 +43,9 @@
                                         </p>
                                     </div>
                                 </h:form>
-                            </div>
+							
+						</div>
+                            
                             <div class="col-md-4 left-account ">
                                 <a href="single.xhtml">
                                     <h:graphicImage class="img-responsive" name="images/s1.jpg" /></a>
