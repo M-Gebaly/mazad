@@ -171,12 +171,18 @@ public class AuctionBean implements Serializable{
     public String viewProduct(String id){
         System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrrr");
         auction = AFL.find(BigDecimal.valueOf(Double.parseDouble(id)));
+        auction.getProductsList();
         productsModel = new ListDataModel<>(auction.getProductsList());
-        System.out.println(auction.getAuctionId());
         
-        System.out.println(productsModel.getRowData().getProductName());
-
+        auction.getProductsList().get(0).getProductName();
+        System.out.println(auction.getAuctionId());
         return "viewProducts";
+    }
+    
+    public String loadList(){
+	AuctionsList=AFL.findAll();
+	model= new ListDataModel<>(AuctionsList);
+        return "index";
     }
 
     /**
