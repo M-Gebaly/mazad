@@ -16,6 +16,7 @@ import com.mazad.ejb.session.ProductsFacadeLocal;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 
 @ManagedBean(name = "product")
 @SessionScoped
@@ -116,6 +117,8 @@ public class ProductsBean implements Serializable{
     public String addProduct(){
         Products pro = new Products();
         pro.setAuctionId(auctionBean.auction);
+        System.out.println(auctionBean.auction.getAuctionId());
+        
         pro.setProductName(product.getProductName());
         pro.setProductDesc(product.getProductDesc());
         pro.setProductPrice(product.getProductPrice());
