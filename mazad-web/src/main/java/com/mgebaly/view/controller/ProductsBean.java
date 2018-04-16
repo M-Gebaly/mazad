@@ -116,13 +116,15 @@ public class ProductsBean implements Serializable{
     
     public String addProduct(){
         Products pro = new Products();
-        pro.setAuctionId(auctionBean.auction);
-        System.out.println(auctionBean.auction.getAuctionId());
-        
+        List<Products> proList = new ArrayList<>();
+        pro.setAuctionId(auctionBean.getAuctionTemp());   
         pro.setProductName(product.getProductName());
         pro.setProductDesc(product.getProductDesc());
         pro.setProductPrice(product.getProductPrice());
-        facadeLocal.create(pro);
+        proList.add(pro);
+        //facadeLocal.create(pro);
+        auctionBean.getAuctionTemp().setProductsList(proList);
+        auctionBean.AFL.create(auctionBean.getAuctionTemp());
         System.out.println("Adddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
         return "addProduct";
     }

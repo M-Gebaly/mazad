@@ -74,7 +74,7 @@ public class Auctions implements Serializable {
     @JoinColumn(name = "SUPPLER_ID", referencedColumnName = "USER_ID")
     @ManyToOne
     private Users supplerId;
-    @OneToMany(mappedBy = "auctionId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "auctionId", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Products> productsList;
 
     public Auctions() {

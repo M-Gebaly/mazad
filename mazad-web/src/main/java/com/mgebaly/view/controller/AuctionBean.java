@@ -49,6 +49,8 @@ public class AuctionBean implements Serializable{
     private DataModel<Products> productsModel;
 	
 	String minuteLefted;
+        
+        private Auctions auctionTemp;
 	
 	
 		public String getMinuteLefted() {
@@ -155,18 +157,11 @@ public class AuctionBean implements Serializable{
     }
 
     public String addAuction() {
-        Auctions auc = new Auctions();
-        System.out.println(auction.getEndDate());
-        
-        auc.setAuctionName(auction.getAuctionName());
-        auc.setAprove(BigInteger.ZERO);
-        auc.setOwnerId(userBean.u);
-        auc.setEndDate(auction.getEndDate());
-        
-         System.out.println(auc.getEndDate());
-        AFL.create(auc);
-        auction.setAuctionId(auc.getAuctionId());
-        System.out.println("added");
+        setAuctionTemp(new Auctions());
+        getAuctionTemp().setAuctionName(auction.getAuctionName());
+        getAuctionTemp().setAprove(BigInteger.ZERO);
+        getAuctionTemp().setOwnerId(userBean.u);
+        getAuctionTemp().setEndDate(auction.getEndDate());
         return "addProduct";
     }
     
@@ -290,6 +285,20 @@ public class AuctionBean implements Serializable{
 	{
 		winner= BAFL.getWinnerPrice(id);
 	}
+
+    /**
+     * @return the auctionTemp
+     */
+    public Auctions getAuctionTemp() {
+        return auctionTemp;
+    }
+
+    /**
+     * @param auctionTemp the auctionTemp to set
+     */
+    public void setAuctionTemp(Auctions auctionTemp) {
+        this.auctionTemp = auctionTemp;
+    }
     
     
 }
