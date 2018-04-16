@@ -15,10 +15,14 @@ import javax.inject.Inject;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+
 import com.mazad.ejb.entity.Auctions;
+import com.mazad.ejb.entity.BidderAuction;
+import com.mazad.ejb.entity.BidderAuctionPK;
 import com.mazad.ejb.entity.Products;
 import com.mazad.ejb.entity.Users;
 import com.mazad.ejb.session.AuctionsFacadeLocal;
+import com.mazad.ejb.session.BidderAuctionFacadeLocal;
 import com.mazad.ejb.session.ProductsFacadeLocal;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -42,7 +46,7 @@ public class AuctionBean implements Serializable{
 	
 	List<Products> productList;
         
-        private DataModel<Products> productsModel;
+    private DataModel<Products> productsModel;
 	
 	String minuteLefted;
 	
@@ -73,6 +77,7 @@ public class AuctionBean implements Serializable{
 	   
 		try {
 			AFL = getEJB();
+			BAFL = getBidderAuctionEjb();
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			System.out.println("can't get interface ");
@@ -87,10 +92,7 @@ public class AuctionBean implements Serializable{
 		Date current = new Date();
 
 		Duration d = Duration.between(current.toInstant(),t.toInstant());
-
-
-
-		minuteLefted =(int)d.toMillis()/1000 +": second" +"   "+(int)d.toMinutes()+": minutes"+"  " +d.toDays()+": day";
+    	minuteLefted =(int)d.toMillis()/1000 +": second" +"   "+(int)d.toMinutes()+": minutes"+"  " +d.toDays()+": day";
          // minuteLefted = d.toString();
 	}
         
@@ -198,4 +200,97 @@ public class AuctionBean implements Serializable{
     public void setProductsModel(DataModel<Products> productsModel) {
         this.productsModel = productsModel;
     }
+    
+    
+    
+    // bidding 
+    
+    //java:global/mazad-ear/mazad-ejb-1.0-SNAPSHOT/BidderAuctionFacade!com.mazad.ejb.session.BidderAuctionFacadeLocal
+    private BidderAuctionFacadeLocal getBidderAuctionEjb() throws NamingException {
+	    InitialContext context = new InitialContext();
+	    return (BidderAuctionFacadeLocal) context.lookup("java:global/mazad-ear/mazad-ejb-1.0-SNAPSHOT/BidderAuctionFacade!com.mazad.ejb.session.BidderAuctionFacadeLocal");
+	}
+    
+    BidderAuctionFacadeLocal BAFL;
+    BigInteger amount;
+      
+    public BidderAuctionFacadeLocal getBAFL() {
+		return BAFL;
+	}
+	public void setBAFL(BidderAuctionFacadeLocal bAFL) {
+		BAFL = bAFL;
+	}
+	
+	
+	public BigInteger getAmount() {
+		return amount;
+	}
+	public void setAmount(BigInteger amount) {
+		this.amount = amount;
+	}
+	public void userBid(String id)
+    {
+    	
+		auction = AFL.find(BigDecimal.valueOf(Double.parseDouble(id)));
+		BidderAuction bidderAuction = new BidderAuction();
+    	
+    	
+    	bidderAuction.setAuctions(auction);
+    	System.out.println(bidderAuction.getAuctions().getAuctionId());
+    	
+    	bidderAuction.setUsers(userBean.u);
+    	System.out.println(bidderAuction.getUsers().getUserName());
+    	
+    	bidderAuction.setBidAmount(amount);
+    	System.err.println(bidderAuction.getBidAmount());
+    	
+    	BidderAuctionPK pk = new BidderAuctionPK();
+    	pk.setAuctionId(auction.getAuctionId().toBigInteger());
+    	pk.setBidderId(userBean.u.getUserId().toBigInteger());
+    	
+    	bidderAuction.setBidderAuctionPK(pk);
+    	System.out.println(bidderAuction.getBidderAuctionPK());
+    	
+    	
+     
+    	// winner part
+    	
+    	List<BidderAuction> allAuction = new ArrayList<>();
+    	allAuction= BAFL.findAll();
+    	for (BidderAuction ba : allAuction) {
+			if(amount.intValue() > ba.getBidAmount().intValue())
+			{
+				ba.setWinner(BigInteger.ZERO);
+				bidderAuction.setWinner(BigInteger.ONE);
+				BAFL.edit(ba);
+			}
+			
+		}
+        	if(BAFL.find(pk)==null)
+        	{
+        		BAFL.create(bidderAuction);
+        	
+        	}
+        	else
+        	{
+        		BAFL.edit(bidderAuction);
+        	}
+    	
+    	System.out.println("bid succrsufully with " + bidderAuction.getBidAmount());
+    }
+	
+	int winner=0;
+	
+	public int getWinner() {
+		return winner;
+	}
+	public void setWinner(int winner) {
+		this.winner = winner;
+	}
+	public void getWinnerPrice()
+	{
+		winner= BAFL.getWinnerPrice();
+	}
+    
+    
 }

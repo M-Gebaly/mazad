@@ -32,10 +32,9 @@
                                             <div class="caption">
 
                                                 <h3>
-                                                    <label class=" btn-bordered-primary" >Auction name</label> <span
+                                                    <label class=" btn-bordered-primary">Auction name</label> <span
                                                         class="btn btn-default" style="width: 100%;"> <h:outputText
-                                                            value="#{a.auctionName}"
-                                                            styleClass="btn btn-default" />
+                                                            value="#{a.auctionName}" styleClass="btn btn-default" />
                                                     </span>
                                                 </h3>
                                                 <span> <h:graphicImage value="resources/images/s1.jpg"
@@ -99,54 +98,70 @@
                                                 <h:form>
                                                     <h:outputLabel value="#{a.auctionId}"/>
                                                     <h:commandButton action="#{auction.viewProduct(a.auctionId)}" value="View Auction products"
-                                                                 class="btn btn-danger custome-merg" style="width: 100%;" />
+                                                                     class="btn btn-danger custome-merg" style="width: 100%;" />
                                                 </h:form>
-                                                
+
                                             </div>
                                         </div>
 
-                                    </h:column>
-                                    <h:column>
-                                        <div class="thumbnail">
-                                            <div class="caption">
-                                                <label class="btn btn-primary" style="width: 100%; font-size: 110%;">you can bid here</label>
-                                                <br></br><br></br><br></br>
-                                                <div class="bidform">
-                                                    <h:form>
-                                                        <center>
-
-                                                            <div class="input-group" style="width: 100%;">
-                                                                <span class="input-group-addon">$</span>
-                                                                <h:inputText value="#" class="form-control" />
-                                                                <span class="input-group-addon">.00</span>
-                                                            </div>
-                                                            <h:commandButton class="btn btn-danger custome-merg"
-                                                                             value="Bid" action="#" style="width: 100%;" />
-
-                                                        </center>
-                                                    </h:form>
-                                                </div>
-                                                <br></br><br></br><br></br>
-                                                <label class="btn btn-primary" style="width: 100%;">winner price until now </label>
-                                                <br></br><br></br><br></br>
-
-                                                <span class="btn btn-default" style="width: 100%;"> <h:outputText
-                                                        value="50" id="remindTime"
-                                                        class="btn btn-default" />
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                    </h:column>
 
                                 </div>
                             </div>
-                        </h:dataTable>
 
-                        <!-- data model -->
-                        <div class="clearfix"></div>
+                            </h:column>
+                            <h:column>
+                                <div class="thumbnail">
+                                    <div class="caption">
+                                        <label class="btn btn-primary"
+                                               style="width: 100%; font-size: 110%;">you can bid
+                                            here</label> <br></br>
+                                        <br></br>
+                                        <br></br>
+                                        <div class="bidform">
+                                            <h:form>
+                                                <center>
+
+                                                    <div class="input-group" style="width: 100%;">
+                                                        <span class="input-group-addon">$</span>
+                                                        <h:inputText value="#{auction.amount}"
+                                                                     class="form-control" />
+                                                        <span class="input-group-addon">.00</span>
+                                                    </div>
+                                                    <h:commandButton class="btn btn-danger custome-merg"
+                                                                     value="Bid" action="#{auction.userBid(a.auctionId)}"
+                                                                     style="width: 100%;" />
+
+                                                </center>
+                                            </h:form>
+                                        </div>
+                                        <br></br>
+                                        <br></br>
+                                        <br></br> <label class="btn btn-primary" style="width: 100%;">winner
+                                            price until now </label> <br></br>
+                                        <br></br>
+                                        <br></br>
+                                        <h:form>
+                                            <span class="btn btn-default" style="width: 100%;"> <h:outputText
+                                                    value="#{auction.winner}" id="winner" class="btn btn-default" />
+                                            </span>
+                                            <p:poll interval="1" listener="#{auction.getWinnerPrice()}"
+                                                    update="winner" />
+                                        </h:form>
+
+
+                                    </div>
+                                </div>
+
+                            </h:column>
 
                     </div>
+                </div>
+                </h:dataTable>
+
+                <!-- data model -->
+                <div class="clearfix"></div>
+
+                </div>
                 </div>
             </ui:define>
         </ui:composition>
